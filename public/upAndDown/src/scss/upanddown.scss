@@ -1,0 +1,20 @@
+@import "compass/css3";
+@import "compass/utilities";
+
+
+@import "upanddown/variables";
+@import "../../vendor/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: url("../img/background.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    -webkit-background-size: cover; /* pour anciens Chrome et Safari */
+    background-size: cover; /* version standardisée */
+
+    @include background-size(cover);
+}
