@@ -12,7 +12,7 @@ storage/*.key
 .env.*.php
 .env.php
 .env
-
+/public/admin-theme/bower_components
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
 
