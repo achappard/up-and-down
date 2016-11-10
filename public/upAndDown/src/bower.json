@@ -22,7 +22,7 @@
     "respond": "respondJS#^1.4.2",
     "html5shiv": "^3.7.3",
     "components-font-awesome": "^4.6.3",
-    "responsive-bootstrap-toolkit": "responsive-toolkit#^2.6.3"
+    "responsive-bootstrap-toolkit": "responsive-toolkit#^2.6.3",
+    "vegas": "^2.3.1"
   }
 }
-

@@ -55,9 +55,9 @@ gulp.task('css', function (){
 });
 
 gulp.task('minify', function () {
-  return gulp.src(destination + '/css/piano-a-lyon.css')
+  return gulp.src(destination + '/css/upanddown.css')
     .pipe(plugins.clean())
-    .pipe(plugins.rename('piano-a-lyon.min.css'))
+    .pipe(plugins.rename('upanddown.min.css'))
     .pipe(gulp.dest(destination + '/css/'));
 });
 
@@ -67,19 +67,19 @@ gulp.task('minify', function () {
  */
 // Cancat
 gulp.task('scripts', function() {
-    return gulp.src([source + '/js/piano_module.js', source + '/js/piano_master.js'])
+    return gulp.src([source + '/js/module.js', source + '/js/master.js'])
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('default'))
-        .pipe(plugins.concat('piano-lyon.js'))
+        .pipe(plugins.concat('upanddown.js'))
         .pipe(gulp.dest(destination + '/js'));
 });
 
 // Cancat
 gulp.task('scripts_prod', function() {
-    return gulp.src([source + '/js/piano_module.js', source + '/js/piano_master.js'])
+    return gulp.src([source + '/js/module.js', source + '/js/master.js'])
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('default'))
-        .pipe(plugins.concat('piano-lyon.min.js', {newLine: ';'}))
+        .pipe(plugins.concat('upanddown.min.js', {newLine: ';'}))
         .pipe(plugins.uglify())
 
         .pipe(gulp.dest(destination + '/js'));
