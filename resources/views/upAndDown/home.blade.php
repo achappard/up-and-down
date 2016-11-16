@@ -8,10 +8,12 @@
                 <div class="panel-heading">form d'upload</div>
 
                 <div class="panel-body">
-                    ici le form d'upload
+                    ici le form d'uploader
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
+
+{{ $count }}
