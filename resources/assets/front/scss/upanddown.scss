@@ -1,0 +1,13 @@
+@import "compass/css3";
+@import "compass/utilities";
+
+
+@import "upanddown/variables";
+@import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+
+body{
+    margin: 0;
+    padding: 0;
+    background: #222 url("../img/dark_wall.png")
+}

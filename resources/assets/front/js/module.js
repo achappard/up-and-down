@@ -10,7 +10,7 @@ var upanddown = (function() {
                    $(this).removeClass("open");
                    $(this).next('#main-nav').removeClass('open');
                }else{
-                   $(this).addClass("open")
+                   $(this).addClass("open").
                    $(this).next('#main-nav').addClass('open');
                }
             });

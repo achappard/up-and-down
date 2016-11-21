@@ -25,3 +25,6 @@ public/upAndDown/src/node_modules
 /public/upAndDown/src/.sass-cache
 /public/upAndDown/css/*
 /public/upAndDown/js
+/resources/assets/front/node_modules
+/resources/assets/front/bower_components
+/resources/assets/front/.sass-cache

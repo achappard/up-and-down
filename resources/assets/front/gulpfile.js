@@ -12,7 +12,7 @@ var plugins = gulpLoadPlugins({
 
 // Path varaibles
 var source = '.';		// Work directory
-var destination = '..';	// Production directory
+var destination = '../../../public/upAndDown/';	// Production directory
 
 
 
@@ -54,12 +54,29 @@ gulp.task('css', function (){
 		.pipe(gulp.dest(destination +'/css'));
 });
 
+gulp.task('copyVegasAssets', function () {
+    console.log("Copie des ressource pour Vegas....");
+
+    gulp.src( source + '/bower_components/vegas/dist/vegas.min.css')
+        .pipe(gulp.dest(destination + '/css'));
+    console.log("    -> Copie des styles vegas.min.css");
+
+
+    gulp.src( source + '/bower_components/vegas/dist/vegas.min.js')
+        .pipe(gulp.dest(destination + '/js'));
+    console.log("    -> Copie du plugin jQuery vegas.min.js");
+
+
+})
+
+
 gulp.task('minify', function () {
   return gulp.src(destination + '/css/upanddown.css')
     .pipe(plugins.clean())
     .pipe(plugins.rename('upanddown.min.css'))
     .pipe(gulp.dest(destination + '/css/'));
 });
+
 
 
 /**
@@ -89,10 +106,10 @@ gulp.task('scripts_prod', function() {
 
 
 // Tâche "build"
-gulp.task('build', ['css', 'scripts']);
+gulp.task('build', ['css','copyVegasAssets', 'scripts']);
 
 // Tâche "prod" = Build + minify
-gulp.task('prod', ['css',  'minify', 'scripts_prod']);
+gulp.task('prod', ['css','copyVegasAssets',  'minify', 'scripts_prod']);
 
 // Tâche par défaut
 gulp.task('default', ['build']);
