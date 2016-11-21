@@ -15,49 +15,40 @@
     <!-- Main content -->
     <section class="content">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-9">
+                <div class="row">
+                    @foreach ($background_images as $img)
+                        <div class="col-md-2">
+                            <div class="box box-default">
+
+                                <div class="box-body">
+                                    <img src="{{ $img->url }}" class="img-responsive" alt=""/>
+                                </div>
+                                <div class="box-footer text-center">
+                                    <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#myModal" data-idbackground="{{ $img->id  }}">Suppression</button>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-md-3">
                 <div class="box box-primary">
                     <div class="box-header with-border">
                         <h3 class="box-title">Ajout de nouvelles images de fond :</h3>
                     </div>
-                    <form method="post" action="{{ url('/admin/background-management/add') }}" class="form-horizontal">
+                    <form method="post" action="{{ url('/admin/background-management/add') }}">
                         {{ csrf_field() }}
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="url" class="col-sm-2 control-label">Lien de l'image</label>
-
-                                <div class="col-sm-10">
-                                    <input class="form-control" id="url" placeholder="http://" type="text" name="url">
-                                </div>
+                                <label for="url" class="control-label">URL de l'image</label>
+                                <input class="form-control" id="url" placeholder="http://" type="text" name="url">
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
-                                    <button type="submit" class="btn btn-primary">Enregistrer cette nouvelle image</button>
-                                </div>
-                            </div>
+                            <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-saved"></span> Enregistrer cette nouvelle image</button>
                         </div>
                     </form>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
-            @foreach ($background_images as $img)
-                <div class="col-md-2">
-                    <div class="box box-default">
-
-                        <div class="box-body">
-                            <img src="{{ $img->url }}" class="img-responsive" alt=""/>
-                        </div>
-                        <div class="box-footer text-center">
-                            <button class="btn btn-default btn-xs">Suppression</button>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-
-
-
         </div>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -69,8 +60,14 @@
                         <h4 class="modal-title">Souhaitez-vous réellement supprimer cette image ?</h4>
                     </div>
                     <div class="modal-body">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">non</button>
-                        <button type="button" class="btn btn-danger">Oui</button>
+                        <p>
+                            Si vous cliquez sur <kbd>oui</kbd>, cette image sera définitivement supprimée du diaporama
+                        </p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger">OUI</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->
