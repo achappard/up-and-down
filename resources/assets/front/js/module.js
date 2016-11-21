@@ -3,22 +3,23 @@ var upanddown = (function() {
      * Initialisation de la navigation principale
      * @type {{init: main_nav.init}}
      */
-    var main_nav = {
-        init : function(current_viewport){
-            $("#toggle-mobile-menu").on('click', function () {
-               if( $(this).hasClass("open") ){
-                   $(this).removeClass("open");
-                   $(this).next('#main-nav').removeClass('open');
-               }else{
-                   $(this).addClass("open").
-                   $(this).next('#main-nav').addClass('open');
-               }
+    var vegas_slideshow = {
+        backgroundList : [],
+        init : function () {
+            console.log(vegas_slideshow.backgroundList);
+
+            $("body").vegas({
+                shuffle :true,
+                delay: 30000,
+                timer: false,
+                color: '#000000',
+                transition: 'fade',
+                firstTransitionDuration: 1,
+                slides: vegas_slideshow.backgroundList
             });
-        },
+        }
     };
-
-
     return {
-        init_main_navigation : main_nav.init,
+        vegas_slideshow : vegas_slideshow
     };
 })();

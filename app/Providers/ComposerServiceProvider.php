@@ -15,9 +15,7 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         // Using class based composers...
-        View::composer(
-            '*', 'App\Http\ViewComposers\ProfileComposer'
-        );
+        View::composer('upAndDown.shared.vegas_slideshow', 'App\Http\ViewComposers\VegasSlideshowComposer');
     }
 
     /**

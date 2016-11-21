@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\ViewComposers;
+use App\Backgrounds;
 use Illuminate\View\View;
 
 /**
@@ -8,7 +9,7 @@ use Illuminate\View\View;
  * Created by Aurélien Chappard.
  * Date: 16/11/2016 à 16:45
  */
-class ProfileComposer
+class VegasSlideshowComposer
 {
     /**
      * Bind data to the view.
@@ -18,6 +19,13 @@ class ProfileComposer
      */
     public function compose(View $view)
     {
-        $view->with('count', "ma vue partagée !");
+        $view->with( [
+            'backgrounds' =>  $this->getBackgrounds()
+        ]);
+    }
+
+
+    private function getBackgrounds(){
+        return Backgrounds::all();
     }
 }

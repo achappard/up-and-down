@@ -54,7 +54,7 @@ gulp.task('css', function (){
 		.pipe(gulp.dest(destination +'/css'));
 });
 
-gulp.task('copyVegasAssets', function () {
+gulp.task('copyAssets', function () {
     console.log("Copie des ressource pour Vegas....");
 
     gulp.src( source + '/bower_components/vegas/dist/vegas.min.css')
@@ -66,6 +66,10 @@ gulp.task('copyVegasAssets', function () {
         .pipe(gulp.dest(destination + '/js'));
     console.log("    -> Copie du plugin jQuery vegas.min.js");
 
+
+    gulp.src( source + '/bower_components/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min.js')
+        .pipe(gulp.dest(destination + '/js'));
+    console.log("    -> Copie du plugin jQuery responsive-bootstrap-toolkit");
 
 })
 
@@ -106,10 +110,10 @@ gulp.task('scripts_prod', function() {
 
 
 // Tâche "build"
-gulp.task('build', ['css','copyVegasAssets', 'scripts']);
+gulp.task('build', ['css','copyAssets', 'scripts']);
 
 // Tâche "prod" = Build + minify
-gulp.task('prod', ['css','copyVegasAssets',  'minify', 'scripts_prod']);
+gulp.task('prod', ['css','copyAssets',  'minify', 'scripts_prod']);
 
 // Tâche par défaut
 gulp.task('default', ['build']);
