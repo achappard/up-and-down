@@ -10,7 +10,7 @@
   "private": true,
   "ignore": [
     "**/.*",
-    "node_modules",
+    "noah de_modules",
     "bower_components",
     "test",
     "tests"

@@ -15,6 +15,3 @@
 <script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
 <!-- ChartJS 1.0.1 -->
 <script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/chartjs/Chart.min.js') }}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/dist/js/pages/dashboard2.js') }}"></script>
-<!-- AdminLTE for demo purposes -->

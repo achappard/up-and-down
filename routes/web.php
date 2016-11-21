@@ -23,9 +23,16 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 
 // Disable registration to enable, un comment this rwo lines
-//Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-//Route::post('register', 'Auth\RegisterController@register');
+Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('register', 'Auth\RegisterController@register');
 
 
 // Admin dashboard
 Route::get('admin', 'Admin\DashboardController@index');
+
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('background-management', 'Admin\BackgroundManagement@index');
+    Route::post('background-management/add', 'Admin\BackgroundManagement@store');
+});

@@ -15,7 +15,7 @@
         <!-- Authentication Links -->
         @unless  (Auth::guest())
             <li>
-                <a target="_blank" href="{{ url('/admin') }}">Admin</a>
+                <a href="{{ url('/admin') }}">Admin</a>
             </li>
             <li class="dropdown">
                 <a href="{{ url('/logout') }}"

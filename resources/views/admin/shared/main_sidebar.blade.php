@@ -9,18 +9,21 @@
             <div class="pull-left info">
                 <p>{{ Auth::user()->name }}</p>
                 {{-- <a href="#"><i class="fa fa-circle text-success"></i> Online</a> --}}
-</div>
-</div>
+            </div>
+        </div>
 
-<!-- sidebar menu: : style can be found in sidebar.less -->
-<ul class="sidebar-menu">
-<li class="active treeview">
-<a href="{{ url('/admin') }}">
-    <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
-
-</a>
-</li>
-</ul>
-</section>
-<!-- /.sidebar -->
+        <ul class="sidebar-menu">
+            <li class="active treeview">
+                <a href="{{ url('/admin') }}">
+                    <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="{{ url('/admin/background-management') }}">
+                    <i class="fa fa-desktop"></i> <span>Images de fond</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
 </aside>
