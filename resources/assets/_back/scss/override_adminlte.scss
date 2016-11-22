@@ -1,3 +1,30 @@
+@import "compass/css3";
+@import "compass/utilities";
 .user-panel > .info > p{
     margin-top: 10px;
+}
+#alert-zone{
+   //position: absolute;
+
+   // top: -40px;
+    z-index: 2;
+}
+
+
+.fade {
+    @include opacity(0);
+    @include transition-property(opacity);
+    @include transition-duration(0.15s);
+    @include transition-timing-function(linear);
+}
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.6);
+
+}
+.modal.fade .modal-dialog {
+    //transition: transform 0.3s ease-out 0s;
+    @include transition-property(transform);
+    @include transition-duration(0.15s);
+    @include transition-timing-function(ease-out);
 }

@@ -27,12 +27,16 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 //Route::post('register', 'Auth\RegisterController@register');
 
 
+//Route::resource('titi', 'Admin\BackgroundManagement');
+
+
 // Admin dashboard
-Route::get('admin', 'Admin\DashboardController@index');
+Route::get('admin', 'Admin\DashboardController@index')->name('dashboard.index');
 
 
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('background-management', 'Admin\BackgroundManagement@index');
-    Route::post('background-management/add', 'Admin\BackgroundManagement@store');
+    Route::get('background-management', 'Admin\BackgroundManagement@index')->name('background.index');
+    Route::post('background-management', 'Admin\BackgroundManagement@store')->name('background.store');
+    Route::delete('background-management/{background}', 'Admin\BackgroundManagement@destroy')->name('background.destroy');
 });

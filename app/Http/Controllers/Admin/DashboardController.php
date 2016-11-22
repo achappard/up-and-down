@@ -24,6 +24,14 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        $page_title  = '<i class="fa fa-dashboard"></i> Tableau de bord';
+        $breadcrumb = array(
+            array(
+                'label' => $page_title,
+                'url'   => false
+            ),
+        );
+        $hightMenuItem = 'admin';
+        return view('admin.dashboard', compact('page_title', 'breadcrumb', 'hightMenuItem' ));
     }
 }

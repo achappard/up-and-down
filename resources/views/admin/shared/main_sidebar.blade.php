@@ -13,17 +13,20 @@
         </div>
 
         <ul class="sidebar-menu">
-            <li class="active treeview">
-                <a href="{{ url('/admin') }}">
-                    <i class="fa fa-dashboard"></i> <span>Tableau de bord</span>
-                </a>
-            </li>
-            <li class="treeview">
-                <a href="{{ url('/admin/background-management') }}">
-                    <i class="fa fa-desktop"></i> <span>Images de fond</span>
-                </a>
-            </li>
+            @foreach($adminNav as $nav)
+
+                @if( !empty ($hightMenuItem) )
+                    <li @if($nav['hightlight_menu'] == $hightMenuItem) class="active" @endif>
+                @else
+                    <li>
+                @endif
+                    <a href="{{ $nav['url'] }}">
+                        {!! $nav['label'] !!}
+                    </a>
+                </li>
+            @endforeach
         </ul>
     </section>
     <!-- /.sidebar -->
 </aside>
+

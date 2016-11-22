@@ -8,7 +8,6 @@
     @include('admin.shared.styles_scripts_header')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
-
     <div class="wrapper">
         <header class="main-header">
             <a href="index2.html" class="logo">
@@ -19,7 +18,40 @@
         </header>
         @include('admin.shared.main_sidebar')
         <div class="content-wrapper">
-            @yield('content')
+            <section class="content-header">
+                <h1>{!! $page_title !!}</h1>
+                @if(! empty($breadcrumb))
+                    <ol class="breadcrumb">
+                        @foreach ($breadcrumb as $b)
+                            <li @if($loop->last) class="active"@endif>
+                                @if ($b['url'])
+                                    <a href="{{ $b['url'] }}">
+                                        @endif
+                                        {!! $b['label'] !!}
+                                        @if ($b['url'])
+                                    </a>
+                                @endif
+                            </li>
+
+                        @endforeach
+                    </ol>
+                @endif
+            </section>
+            <section class="content">
+
+                @if (Session::has('flash_success_message'))
+                <div id="alert-zone" class="row">
+                    <div class="col-sm-12">
+                        <div class="alert alert-success alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            {!! Session::get('flash_success_message') !!}
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+                @yield('content')
+            </section>
         </div>
         @include('admin.shared.footer')
     </div>

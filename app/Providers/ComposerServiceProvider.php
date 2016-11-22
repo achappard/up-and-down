@@ -16,6 +16,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer('upAndDown.shared.vegas_slideshow', 'App\Http\ViewComposers\VegasSlideshowComposer');
+        View::composer('admin.shared.main_sidebar', 'App\Http\ViewComposers\AdminMainNavComposer');
     }
 
     /**
