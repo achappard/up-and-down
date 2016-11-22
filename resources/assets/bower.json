@@ -23,6 +23,7 @@
     "html5shiv": "^3.7.3",
     "components-font-awesome": "^4.6.3",
     "responsive-bootstrap-toolkit": "responsive-toolkit#^2.6.3",
+    "AdminLTE": "adminlte#^2.3.8",
     "vegas": "^2.3.1"
   }
 }

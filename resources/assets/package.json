@@ -1,8 +1,8 @@
 {
-  "name": "UpAndDown",
+  "name": "up-and-down",
   "version": "1.0.0",
-  "description": "UpAndDown theme gulp file",
-  "main": "index.js",
+  "description": "",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,6 +13,7 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean-css": "^2.0.11",
     "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
     "gulp-copy": "0.0.2",
     "gulp-cssbeautify": "^0.1.3",
     "gulp-csscomb": "^3.0.7",
@@ -24,9 +25,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.8",
-    "jshint": "^2.9.2"
-  },
-  "dependencies": {
-    "gulp-concat": "^2.6.0"
+    "jshint": "^2.9.2",
+    "require-dir": "^0.3.1"
   }
 }

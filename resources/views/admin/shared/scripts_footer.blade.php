@@ -1,17 +1,10 @@
-<!-- jQuery 2.2.3 -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- FastClick -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/fastclick/fastclick.js') }}"></script>
-<!-- AdminLTE App -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/dist/js/app.min.js') }}"></script>
-<!-- Sparkline -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/sparkline/jquery.sparkline.min.js') }}"></script>
-<!-- jvectormap -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/jvectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
-<!-- SlimScroll 1.3.0 -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-<!-- ChartJS 1.0.1 -->
-<script src="{{ URL::asset('admin-theme/bower_components/AdminLTE/plugins/chartjs/Chart.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/jquery-2.2.3.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/fastclick.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/app.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/jquery.sparkline.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/jquery-jvectormap-1.2.2.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/jquery-jvectormap-world-mill-en.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/vendor/js/Chart.min.js') }}"></script>
+<script src="{{ URL::asset('adminLTE/js/back_upanddown.js') }}"></script>

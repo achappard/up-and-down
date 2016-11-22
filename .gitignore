@@ -28,3 +28,10 @@ public/upAndDown/src/node_modules
 /resources/assets/front/node_modules
 /resources/assets/front/bower_components
 /resources/assets/front/.sass-cache
+/resources/assets/node_modules
+/resources/assets/back/bower_components
+/resources/assets/bower_components
+/resources/assets/.sass-cache
+/public/adminLTE/vendor
+/public/adminLTE/css
+/public/adminLTE/js
