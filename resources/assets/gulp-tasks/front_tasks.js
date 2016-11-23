@@ -85,6 +85,16 @@ gulp.task('front_assets_copy', function () {
         .pipe(gulp.dest(front_dest + '/js'));
     console.log("    -> Copie du plugin jQuery responsive-bootstrap-toolkit");
 
+
+    gulp.src( bower_path + '/bootstrap-sass/assets/fonts/bootstrap/*')
+        .pipe(gulp.dest(front_dest + '/fonts/bootstrap'));
+    console.log("    -> Copie des typos de bootstrap");
+
+
+    gulp.src( bower_path + '/bootstrap-sass/assets/javascripts/bootstrap.min.js')
+        .pipe(gulp.dest(front_dest + '/js'));
+    console.log("    -> Copie de bootstrap.min.js");
+
 });
 
 

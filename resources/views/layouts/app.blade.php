@@ -11,24 +11,16 @@
 <body>
 
     @yield('content')
-    <ul>
-        <!-- Authentication Links -->
-        @unless  (Auth::guest())
-            <li>
-                <a href="{{ url('/admin') }}">Admin</a>
-            </li>
-            <li class="dropdown">
-                <a href="{{ url('/logout') }}"
-                   onclick="event.preventDefault();
-                                     document.getElementById('logout-form').submit();">
-                    Logout
-                </a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </li>
-        @endunless
-    </ul>
+
+    @include('upAndDown.shared.main_menu')
+
+
+
+
+
+
+
+
     @include('upAndDown.shared.scripts_footer')
     @include('upAndDown.shared.vegas_slideshow')
     @stack('scripts')

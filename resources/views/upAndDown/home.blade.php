@@ -1,17 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">form d'upload</div>
+<div id="defaultpanel">
+    <div class="panel panel-default">
+        <div class="panel-heading text-center"><p class="h3">Transfert</p></div>
 
-                <div class="panel-body">
-                    ici le form d'uploader
-                </div>
-            </div>
+        <div class="panel-body">
+            ici le form d'uploader
         </div>
     </div>
 </div>
+
 @endsection

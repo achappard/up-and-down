@@ -1,1 +1,33 @@
-$icon-font-path: "../vendor/bootstrap-sass/assets/fonts/bootstrap/";
+$icon-font-path: "../fonts/bootstrap/";
+
+// Panel
+$panel-border-radius            : 15px;
+
+
+// Panel-default
+$panel-default-heading-bg       : #FFFFFF;
+$panel-default-border           : #FFFFFF;
+
+// button
+$btn-border-radius-base         : 15px;
+$btn-default-color              : #FFFFFF;
+$btn-default-bg                 : #d4d7d9;
+$btn-default-border             : #d4d7d9;
+
+// Forms
+$input-border-radius            : 0px;
+
+
+// NavBar
+$navbar-height                  : 32px;
+//$navbar-padding-horizontal      : 2px;
+//$navbar-padding-vertical      : 27px;
+
+$nav-link-padding               :   4px 10px !default;
+
+
+$navbar-inverse-bg              : rgba(#222, 0.97);
+$navbar-inverse-border          : darken(#222, 10%) !default;
+
+$font-family-sans-serif:  "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+

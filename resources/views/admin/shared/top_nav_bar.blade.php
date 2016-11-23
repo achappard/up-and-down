@@ -7,6 +7,9 @@
     <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
             <!-- User Account: style can be found in dropdown.less -->
+            <li>
+                <a href="{{ url('/') }}"><span class="glyphicon glyphicon-share-alt"></span> Retour front-office</a>
+            </li>
             <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <img src="{{ Auth::user()->avatar(160) }}" class="user-image" alt="User Image">

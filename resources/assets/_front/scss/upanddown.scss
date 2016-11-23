@@ -1,10 +1,14 @@
 @import "compass/css3";
 @import "compass/utilities";
 
-
 @import "upanddown/variables";
 @import "../../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
+
+@import "upanddown/form";
+@import "upanddown/button";
+@import "upanddown/navbar";
+@import "upanddown/defaultPanel";
 
 body{
     margin: 0;

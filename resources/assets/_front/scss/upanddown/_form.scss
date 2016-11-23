@@ -1,0 +1,16 @@
+.form-control {
+    border-left: 0px;
+    border-top: 0px;
+    border-right: 0px;
+    padding: $padding-base-vertical 0px;
+    @include box-shadow(none);
+
+    &:focus {
+        //border-color: $color;
+        //outline: 0;
+        @include box-shadow(none);
+    }
+}
+.has-error .form-control, .has-error .form-control:focus{
+    @include box-shadow(none);
+}
