@@ -45,6 +45,9 @@ class BackgroundManagement extends Controller
      * @return Response
      */
     public function store(Request $request){
+        $this->validate($request, [
+           'url' => 'bail|required|url|valid_distant_image'
+        ]);
 
         $background = new Backgrounds;
         $background->url = $request->url;

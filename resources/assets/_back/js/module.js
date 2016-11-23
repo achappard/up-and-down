@@ -21,16 +21,17 @@ var adminUp = (function() {
 
     var alertmodal = {
         init : function () {
-            $('#alert-zone .alert button.close').on('click', function (event) {
+            $('#alert-zone .alert-dismissible button.close').on('click', function (event) {
                 event.stopPropagation();
                 $(this).parent().slideUp(200, function () {
                     $(this).parent().parent().remove();
                 });
+
             });
 
             $(document).keyup(function(e) {
                 if (e.keyCode === 27) {
-                    $('#alert-zone .alert button.close').trigger('click');
+                    $('#alert-zone .alert-dismissible button.close').trigger('click');
                 }
             });
         }

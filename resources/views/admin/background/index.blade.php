@@ -26,9 +26,12 @@
             </div>
             {{ Form::open(array('route' => 'background.store')) }}
                 <div class="box-body">
-                    <div class="form-group">
+                    <div class="form-group @if($errors->has('url')) has-error @endif">
                         <label for="url" class="control-label">URL de l'image</label>
-                        <input class="form-control" id="url" placeholder="http://" type="text" name="url">
+                        <input class="form-control" id="url" placeholder="http://" type="text" name="url" value="{{ old('url') }}">
+                        @if($errors->has('url'))
+                        <span class="help-block">{{ $errors->first("url") }}</span>
+                        @endif
                     </div>
                     <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-saved"></span> Enregistrer cette nouvelle image</button>
                 </div>

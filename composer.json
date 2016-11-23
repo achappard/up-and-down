@@ -22,7 +22,10 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+      "files" : [
+        "app/Validators/MyValidator.php"
+      ]
     },
     "autoload-dev": {
         "classmap": [
