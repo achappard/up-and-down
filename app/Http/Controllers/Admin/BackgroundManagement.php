@@ -28,7 +28,7 @@ class BackgroundManagement extends Controller
     public function index()
     {
         $background_images = Backgrounds::all();
-        $page_title  = "<i class=\"fa fa-desktop\"></i> Gestion des images de fond";
+        $page_title  = "<i class=\"ion ion-images\"></i>  Gestion des images de fond";
         $breadcrumb = array(
             array(
                 'label' => $page_title,

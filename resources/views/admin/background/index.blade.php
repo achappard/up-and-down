@@ -28,7 +28,7 @@
                 <div class="box-body">
                     <div class="form-group @if($errors->has('url')) has-error @endif">
                         <label for="url" class="control-label">URL de l'image</label>
-                        <input class="form-control" id="url" placeholder="http://" type="text" name="url" value="{{ old('url') }}">
+                        <input class="form-control" id="url" placeholder="http://" type="text" name="url" value="{{ old('url') }}" required autofocus>
                         @if($errors->has('url'))
                         <span class="help-block">{{ $errors->first("url") }}</span>
                         @endif

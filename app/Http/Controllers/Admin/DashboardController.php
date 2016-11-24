@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Backgrounds;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -31,7 +32,8 @@ class DashboardController extends Controller
                 'url'   => false
             ),
         );
+        $nbBackgrounds = Backgrounds::all()->count();
         $hightMenuItem = 'admin';
-        return view('admin.dashboard', compact('page_title', 'breadcrumb', 'hightMenuItem' ));
+        return view('admin.dashboard', compact('page_title', 'breadcrumb', 'hightMenuItem', 'nbBackgrounds' ));
     }
 }

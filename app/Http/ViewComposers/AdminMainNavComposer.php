@@ -30,7 +30,7 @@ class AdminMainNavComposer
                 'hightlight_menu'   => 'admin'
             ),
             array(
-                'label'   => '<i class="fa fa-desktop"></i> <span>Images de fond</span>',
+                'label'   => '<i class="ion ion-image"></i> <span>Images de fond</span>',
                 'url'     => route('background.index'),
                 'hightlight_menu'   => 'admin.manage-backgrounds'
             ),
