@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div class="row">
             @foreach ($background_images as $img)
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="box box-default">
 
                         <div class="box-body">
@@ -19,7 +19,7 @@
             @endforeach
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-4">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Ajout de nouvelles images de fond :</h3>
