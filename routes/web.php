@@ -23,8 +23,8 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 
 // Disable registration to enable, un comment this rwo lines
-Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('register', 'Auth\RegisterController@register');
+//Route::get('register', 'Auth\RegisterController@showRegistrationForm');
+//Route::post('register', 'Auth\RegisterController@register');
 
 
 //Route::resource('titi', 'Admin\BackgroundManagement');
@@ -39,4 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('background-management', 'Admin\BackgroundManagement@index')->name('background.index');
     Route::post('background-management', 'Admin\BackgroundManagement@store')->name('background.store');
     Route::delete('background-management/{background}', 'Admin\BackgroundManagement@destroy')->name('background.destroy');
+
+    Route::get('my-profile', 'Admin\UserProfilController@show')->name('userprofile.show');
+    Route::put('my-profile/{userprofile}', 'Admin\UserProfilController@update')->name('userprofile.update');
 });

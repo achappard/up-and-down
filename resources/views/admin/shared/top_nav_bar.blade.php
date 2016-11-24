@@ -21,14 +21,13 @@
                         <img src="{{ Auth::user()->avatar(160) }}" class="img-circle" alt="User Image">
                         <p>
                             {{ Auth::user()->name }}
-                            <small>Member since Nov. 2012</small>
                         </p>
                     </li>
 
                     <!-- Menu Footer-->
                     <li class="user-footer">
                         <div class="pull-left">
-                            <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <a href="{{ route('userprofile.show') }}" class="btn btn-default btn-flat">Mon profil</a>
                         </div>
                         <div class="pull-right">
                             <a href="{{ url('/logout') }}"  class="btn btn-default btn-flat"
