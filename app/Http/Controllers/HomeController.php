@@ -24,4 +24,19 @@ class HomeController extends Controller
 
         return view('upAndDown.home');
     }
+
+
+
+    public function submitUpload(Request $request){
+        dd(request()->file('myfiles'));
+//        ->store('avatars');
+        $files =request()->file('myfiles');
+        if($files){
+            foreach ($files as $file)
+            {
+                $file->store('uploads');
+            }
+        }
+        return back();
+    }
 }

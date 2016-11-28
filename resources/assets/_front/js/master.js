@@ -1,5 +1,6 @@
+/*
 (function($, viewport){
     $(document).ready(function() {
-        console.log("UpAndDown ready !");
+        // console.log("UpAndDown ready !");
     });
-})(jQuery, ResponsiveBootstrapToolkit);
+})(jQuery, ResponsiveBootstrapToolkit);*/

@@ -1,0 +1,121 @@
+#file-list{
+    $dimension:16px;
+    $margin : $dimension * -1;
+    background: #FFF;
+    margin: $margin $margin 0px $margin;
+    padding: $dimension $dimension 10px $dimension;
+    border-bottom: 1px solid $input-border;
+    @include border-top-left-radius($panel-border-radius);
+    @include border-top-right-radius($panel-border-radius);
+}
+#file-list.list{
+    background: #F7F9FA;
+}
+a#addFilesToUpload_first, a.addMoreFilesToUpload{
+    font-size: 20px;
+    color: $gray-darker;
+    display: block;
+    margin: 0px auto;
+    span.plus-sign{
+        $dimmension : 26px;
+        display: inline-block;
+        background: #3f9fff;
+        color: #FFFFFF;
+        width: $dimmension ;
+        height: $dimmension ;
+        @include border-radius(50%);
+        font-family: "Times New Roman";
+        line-height: 27px;
+
+    }
+    &:focus, &:hover{
+        text-decoration: none;
+    }
+}
+a.addMoreFilesToUpload{
+    display: none;
+    text-align: left;
+    font-size: 14px;
+    margin-top: 50px;
+    color: lighten($gray-darker, 50%);
+    span.plus-sign{
+        $dimmension : 20px;
+        padding-left: 4px;
+        display: inline-block;
+        background: #FFFFFF;
+        border:2px solid #3f9fff;
+        color: #3f9fff;
+        width: $dimmension ;
+        height: $dimmension ;
+        line-height: 17px;
+    }
+    &:hover, &:active{
+        color: $gray-darker;
+    }
+}
+a#addFilesToUpload_first.show{
+    display: block;
+}
+#filesZone{
+
+    margin-left: -16px;
+    margin-right: -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    max-height: 127px;
+    overflow: scroll;
+    ul{
+        font-size: 12px;
+        li{
+            border-bottom: 1px solid $input-border;
+            padding-bottom: 5px;
+            margin-top: 5px;
+            div.delete-line{
+                color: inherit;
+                display: block;
+                width: 100%;
+                padding-right: 30px;
+                position: relative;
+                cursor: default;
+                strong{
+                    display: block;
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                span.size{
+                    display: block;
+                    font-size: 10px;
+                    color: lighten($gray-darker, 50%);
+                }
+                span.deleteicon{
+                    display: none;
+                    position: absolute;
+                    top: 6px;
+                    right: 0px;
+                    width: 25px;
+                    height: 25px;
+                    font-size: 18px;
+                }
+                &:hover{
+                    text-decoration: none;
+                    span.deleteicon{
+                        display: block;
+                        cursor: pointer;
+                        color: #3f9fff;
+                        &:hover{
+
+                            color: darken(#3f9fff, 10%);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+#uploadForm{
+    #inputMessage{
+        resize: none;
+    }
+}

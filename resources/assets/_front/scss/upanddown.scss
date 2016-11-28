@@ -9,9 +9,11 @@
 @import "upanddown/button";
 @import "upanddown/navbar";
 @import "upanddown/defaultPanel";
+@import "upanddown/uploadPanel";
 
 body{
     margin: 0;
     padding: 0;
-    background: #222 url("../img/dark_wall.png")
+    background: $gray-darker url("../img/dark_wall.png")
 }
+
