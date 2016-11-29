@@ -1,17 +1,73 @@
 #file-list{
+    position: relative;
     $dimension:16px;
     $margin : $dimension * -1;
     background: #FFF;
     margin: $margin $margin 0px $margin;
     padding: $dimension $dimension 10px $dimension;
     border-bottom: 1px solid $input-border;
+    margin-bottom: 10px;
     @include border-top-left-radius($panel-border-radius);
     @include border-top-right-radius($panel-border-radius);
+}
+#transfert{
+    padding: 30px 0px;
+    text-align: center;
+    display: none;
+
+    .btn-primary{
+        margin-top: 50px;
+    }
+
+    #divProgress{
+        margin-bottom: 20px;
+    }
+}
+#error_transfert, #finish_transfert{
+    padding: 45px 0px 30px 0px;
+    display:none;
+    img{
+        width: 170px;
+        margin: 0px auto 20px auto;
+        display: block;
+    }
+    .btn-primary{
+        margin-top: 50px;
+    }
+}
+#errorFileList{
+    #arrow-error{
+        position: absolute;
+        top: 90px;
+        left: -7px;
+        $dimension : 20px;
+        width: $dimension;
+        height: $dimension;
+        background: $gray-dark;
+        @include transform(rotate(45deg));
+    }
+    background: $gray-dark;
+    position: absolute;
+    left: $panel-default-width + 20px;
+    width: 210px;
+    top: -30px;
+    color: #FFF;
+    @include border-radius(5px);
+    padding: 25px;
+    @include opacity(0);
+    @include box-shadow(rgba(#000,0.4) 0px 0px 6px);
+    @include transition-property(opacity);
+    @include transition-duration(0.4s);
+    @include transition-timing-function(ease-in);
+}
+#errorFileList.show{
+    @include opacity(1);
 }
 #file-list.list{
     background: #F7F9FA;
 }
-a#addFilesToUpload_first, a.addMoreFilesToUpload{
+
+a#addFilesToUpload_first, a.addMoreFilesToUpload, span.title{
     font-size: 20px;
     color: $gray-darker;
     display: block;
@@ -31,6 +87,9 @@ a#addFilesToUpload_first, a.addMoreFilesToUpload{
     &:focus, &:hover{
         text-decoration: none;
     }
+}
+a#addFilesToUpload_first{
+    margin-top: 20px;
 }
 a.addMoreFilesToUpload{
     display: none;
@@ -57,13 +116,14 @@ a#addFilesToUpload_first.show{
     display: block;
 }
 #filesZone{
-
     margin-left: -16px;
     margin-right: -16px;
     padding-left: 16px;
     padding-right: 16px;
     max-height: 127px;
     overflow: scroll;
+    min-height: 55px;
+
     ul{
         font-size: 12px;
         li{

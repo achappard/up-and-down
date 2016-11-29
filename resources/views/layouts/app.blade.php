@@ -14,13 +14,6 @@
 
     @include('upAndDown.shared.main_menu')
 
-
-
-
-
-
-
-
     @include('upAndDown.shared.scripts_footer')
     @include('upAndDown.shared.vegas_slideshow')
     @stack('scripts')

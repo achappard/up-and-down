@@ -24,7 +24,8 @@
             "App\\": "app/"
         },
       "files" : [
-        "app/Validators/MyValidator.php"
+        "app/Validators/MyValidator.php",
+        "app/Helpers/UploadHandler.php"
       ]
     },
     "autoload-dev": {

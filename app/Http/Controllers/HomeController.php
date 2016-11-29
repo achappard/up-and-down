@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 
 class HomeController extends Controller
 {
@@ -21,22 +23,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         return view('upAndDown.home');
     }
 
 
 
     public function submitUpload(Request $request){
-        dd(request()->file('myfiles'));
-//        ->store('avatars');
-        $files =request()->file('myfiles');
-        if($files){
-            foreach ($files as $file)
-            {
-                $file->store('uploads');
-            }
-        }
-        return back();
+        // Lancement de l'upload
+        $upload_handler = new \UploadHandler();
+
+
+        $to         = Input::get("to");
+        $message    = Input::get("message");
+
+        $data = array(
+            'to'        => $to,
+            'message'   => $message,
+            'files'     => $upload_handler->response['myfiles'],
+        );
+
+        return response()->json($data);
     }
 }

@@ -7,6 +7,7 @@ $panel-border-radius            : 15px;
 // Panel-default
 $panel-default-heading-bg       : #FFFFFF;
 $panel-default-border           : #FFFFFF;
+$panel-default-width            : 280px;
 
 // button
 $btn-border-radius-base         : 20px;
@@ -18,6 +19,9 @@ $btn-default-border             : #d4d7d9;
 // Forms
 $input-border-radius            : 0px;
 
+
+$code-color:                  #389DFF !default;
+$code-bg:                     lighten($code-color, 37%) !default;
 
 // NavBar
 $navbar-height                  : 32px;

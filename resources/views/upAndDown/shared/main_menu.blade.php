@@ -15,12 +15,12 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li> <a href="{{ url('/admin') }}">Administration</a></li>
+                    <li> <a href="{{ url('/admin') }}"><span class="glyphicon glyphicon-wrench"></span> Administration</a></li>
                     <li>
                         <a href="{{ url('/logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
-                            Logout
+                            <span class="glyphicon glyphicon-off"></span>  Logout
                         </a>
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" class="hidden">
                             {{ csrf_field() }}

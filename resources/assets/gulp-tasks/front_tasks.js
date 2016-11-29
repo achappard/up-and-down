@@ -72,28 +72,47 @@ gulp.task('front_assets_copy', function () {
     console.log("FrontOffice : Copie des ressource pour Vegas....");
 
     gulp.src( bower_path + '/vegas/dist/vegas.min.css')
-        .pipe(gulp.dest(front_dest + '/css'));
+        .pipe(gulp.dest(front_dest + '/css/vendor/vegas'));
     console.log("    -> Copie des styles vegas.min.css");
 
 
     gulp.src( bower_path + '/vegas/dist/vegas.min.js')
-        .pipe(gulp.dest(front_dest + '/js'));
+        .pipe(gulp.dest(front_dest + '/js/vendor/vegas'));
     console.log("    -> Copie du plugin jQuery vegas.min.js");
 
 
     gulp.src( bower_path + '/responsive-bootstrap-toolkit/dist/bootstrap-toolkit.min.js')
-        .pipe(gulp.dest(front_dest + '/js'));
+        .pipe(gulp.dest(front_dest + '/js/vendor/responsive-bootstrap-toolkit'));
     console.log("    -> Copie du plugin jQuery responsive-bootstrap-toolkit");
 
 
     gulp.src( bower_path + '/bootstrap-sass/assets/fonts/bootstrap/*')
-        .pipe(gulp.dest(front_dest + '/fonts/bootstrap'));
+        .pipe(gulp.dest(front_dest + '/fonts/vendor/bootstrap'));
     console.log("    -> Copie des typos de bootstrap");
 
 
     gulp.src( bower_path + '/bootstrap-sass/assets/javascripts/bootstrap.min.js')
-        .pipe(gulp.dest(front_dest + '/js'));
+        .pipe(gulp.dest(front_dest + '/js/vendor/bootstrap'));
     console.log("    -> Copie de bootstrap.min.js");
+
+    gulp.src( bower_path + '/blueimp-file-upload/js/jquery.iframe-transport.js')
+        .pipe(gulp.dest(front_dest + '/js/vendor/jquery-fileupload'));
+    console.log("    -> Copie de jquery.iframe-transport.js");
+
+    gulp.src( bower_path + '/blueimp-file-upload/js/vendor/jquery.ui.widget.js')
+        .pipe(gulp.dest(front_dest + '/js/vendor/jquery-fileupload/vendor'));
+    console.log("    -> Copie de jquery.ui.widget.js");
+
+
+    gulp.src( bower_path + '/blueimp-file-upload/js/jquery.fileupload.js')
+        .pipe(gulp.dest(front_dest + '/js/vendor/jquery-fileupload'));
+    console.log("    -> Copie de jquery.fileupload.js");
+
+
+    gulp.src( bower_path + '/jquery-circle-progress/dist/circle-progress.min.js')
+        .pipe(gulp.dest(front_dest + '/js/vendor/jquery-circle-progress'));
+    console.log("    -> Copie de jquery-circle-progress.js");
+
 
 });
 
@@ -101,10 +120,11 @@ gulp.task('front_assets_copy', function () {
 /**
  * JavaScript Front Tasks
  */
+
 // Cancat
 gulp.task('front_scripts', function() {
     console.log("FrontOffice : Compilation des fichiers JavaScript");
-    gulp.src([front_src + '/js/module.js', front_src + '/js/master.js'])
+    gulp.src([front_src + '/js/validation_form.js',front_src + '/js/module.js', front_src + '/js/master.js'])
         .pipe(plugins.jshint())
         .pipe(plugins.jshint.reporter('default'))
         .pipe(plugins.concat('upanddown.js'))

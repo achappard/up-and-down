@@ -1,6 +1,6 @@
 {{-- On ne charge le js que si des background sont dispo--}}
 @if( $backgrounds )
-    <script src="{{ URL::asset('upAndDown/js/vegas.min.js') }}"></script>
+    <script src="{{ URL::asset('upAndDown/js/vendor/vegas/vegas.min.js') }}"></script>
     <script>
         (function($){
             $(document).ready(function() {

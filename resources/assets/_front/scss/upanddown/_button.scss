@@ -4,3 +4,12 @@
         @include box-shadow(none);
     }
 }
+
+
+.btn-primary {
+    @include button-variant(#3F9FFF, #FFF, #3F9FFF);
+    &:hover{
+
+        background: #FFF;
+    }
+}

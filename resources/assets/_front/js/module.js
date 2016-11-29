@@ -20,6 +20,8 @@ var upanddown = (function() {
     };
 
     var upload_form = {
+        progress_loader: null,
+        uploadProcess : null,
         uploadlist:[],
         block_add_input: false,
         addtional_input_file: '<input class="inputMyFile hidden" type="file" id="" name="myfiles[]" multiple>',
@@ -28,11 +30,44 @@ var upanddown = (function() {
          * Initialise l'uplaod (lance les écouteurs, etc..)
          */
         init : function () {
+                console.log("init form");
+
+            /*upload_form.progress_loader = $('#divProgress').ClassyLoader(
+                {
+                    width: 200, // width of the loader in pixels
+                    height: 200, // height of the loader in pixels
+                    animate: false, // whether to animate the loader or not
+                    displayOnLoad: true,
+                    percentage: 0, // percent of the value, between 0 and 100
+                    speed: 0, // miliseconds between animation cycles, lower value is faster
+                    roundedLine: true, // whether the line is rounded, in pixels
+                    showRemaining: true, // how the remaining percentage (100% - percentage)
+                    fontFamily: 'Helvetica', // name of the font for the percentage
+                    fontSize: '20px', // size of the percentage font, in pixels
+                    showText: true, // whether to display the percentage text
+                    diameter: 80, // diameter of the circle, in pixels
+                    fontColor: 'rgba(34, 34, 34, 1)', // color of the font in the center of the loader, any CSS color would work, hex, rgb, rgba, hsl, hsla
+                    lineColor: 'rgba(63,159,255, 1)', // line color of the main circle
+                    remainingLineColor: 'rgba(55, 55, 55, 0.4)', // line color of the remaining percentage (if showRemaining is true)
+                    lineWidth: 10 // the width of the circle line in pixels
+                }
+            );*/
+            upload_form.progress_loader = $('#divProgress').circleProgress({
+                value: 0,
+                size: 170,
+                thickness: 10,
+                lineCap : "round",
+                startAngle: -Math.PI / 4 * 2,
+                fill: { color: "#3F9FFF" }
+            });
+
+
             if (window.File && window.FileReader && window.FileList && window.Blob) {
                 // Great success! All the File APIs are supported.
             } else {
                 alert('The File APIs are not fully supported in this browser.');
             }
+
 
             // Click d'ajout de champs input file
             $("#addFilesToUpload_first, .addMoreFilesToUpload").on('click', upload_form.add_new_input_file);
@@ -43,9 +78,169 @@ var upanddown = (function() {
             // Suppresion de fichier de la liste
             $( "#filesZone" ).on( "click", "div.delete-line span.remove_file", upload_form.remove_file);
 
+            $("#cancelUpload").on('click', upload_form.cancelUpload);
+
+            // Soumission du formulaire
+            // $("#submit-upload").attr('disabled', 'disabled');
+            $("#uploadForm").on('submit', function(event){
+                event.preventDefault();
+                event.stopImmediatePropagation();
+
+                // Vérification du formulaire
+                var email_to            = $("#inputTo").val(),
+                    email_message       = $("#inputMessage").val(),
+                    filesList           = [];
+
+                for( var i = 0; i<upload_form.uploadlist.length; i++ ){
+                    tab = upload_form.uploadlist[i];
+                    for( var j = 0; j<upload_form.uploadlist[i].length; j++ ){
+                        filesList.push(upload_form.uploadlist[i][j]);
+                    }
+                }
+
+                var form_check = upload_form.checkform(email_to, email_message, filesList);
+
+                if ( form_check.is_valid ){
+
+                    $("#uploadForm, #file-list").hide();
+                    $("#transfert").show();
+
+
+                    $('#input-file-wrapper').fileupload({
+                        singleFileUploads : false,
+                        maxChunkSize: 20000000, // 10 MB
+                        formData: {
+                            to          : $("#inputTo").val(),
+                            message     : $("#inputMessage").val(),
+                            _token      : $('meta[name="csrf-token"]').attr('content')
+
+                        },
+                        progressall: function (e, data) {
+                            var progress = parseInt(data.loaded / data.total * 100, 10);
+                            // upload_form.progress_loader.setPercent(progress).draw();
+                            $("#pcentValue").text(progress + "%");
+                            upload_form.progress_loader.circleProgress('value', progress/100);
+                        }
+                    });
+
+
+                    // Ajout des fichiers
+                    upload_form.uploadProcess = $("#input-file-wrapper").fileupload(
+                        'send',
+                        {
+                            files: filesList,
+                        }
+                    )
+                    .success(function (result, textStatus, jqXHR) {
+                        console.log("Finis !");
+                        $("#transfert").hide();
+                        $("#finish_transfert").show();
+                    })
+                    .error(function (jqXHR, textStatus, errorThrown) {
+                        $("#transfert").hide();
+                        $("#error_transfert").show();
+                        console.log("Erreur lors de l'upload en Ajax : Code erreur = " + errorThrown );
+                        switch (errorThrown){
+                            case "Internal Server Error" :
+                                $("#error-reason").text("Erreur 500 du serveur");
+                                break;
+                            case "abort" :
+                                $("#error-reason").text("Abandon de l'utilisateur");
+                                break;
+                        }
+                        /*if (errorThrown === 'abort') {
+                            console.log('File Upload has been canceled');
+                        }*/
+                    });
+                    // var overallProgress = $('#input-file-wrapper').fileupload('progress');
+                }
+            });
 
         },
 
+        cancelUpload : function (event){
+            console.log("cancel");
+            event.preventDefault();
+            upload_form.uploadProcess.abort();
+        },
+        /**
+         * Vérification du formulaire
+         */
+        checkform : function (email_to, email_message, filesList) {
+            var errors = [];
+            var fileListValidator = validateForm.validate(
+                filesList,
+                ['array_length_moreEqual_1'],
+                ['Veuillez sélectionner au moins un fichier à envoyer']
+            );
+            if(fileListValidator.is_valid === false ){
+                errors.push({
+                    field : 'upload',
+                    error :  fileListValidator.reason
+                });
+            }
+
+
+            var emailValidator = validateForm.validate(
+                email_to,
+                [
+                    'required',
+                    'email'
+                ],
+                [
+                    'Veuillez saisir une adresse email pour le destinataire',
+                    'Veuillez saisir une adresse email valide pour le destinataire'
+                ]
+            );
+
+            if( !emailValidator.is_valid ){
+                errors.push({
+                    field : 'inputTo',
+                    error :  emailValidator.reason
+                });
+            }
+
+            var messageValidator = validateForm.validate(
+                email_message,
+                ['required'],
+                ['Veuillez saisir un message pour votre destinataire']
+            );
+            if( !messageValidator.is_valid ){
+                errors.push({
+                    field : 'inputMessage',
+                    error :  messageValidator.reason
+                });
+            }
+
+            upload_form.display_errors(errors);
+
+            if( errors.length <= 0){
+                return {
+                    is_valid        : true
+                };
+            }
+            return {
+                is_valid            : false,
+                list_errors         : errors
+            };
+        },
+        display_errors : function(errors_list){
+            //on efface les errors
+            $("#helpBlock-inputTo, #helpBlock-inputMessage").text("");
+            $("#block-inputTo, #block-inputMessage").removeClass("has-error");
+            $("#errorFileList").removeClass("show");
+
+            for( var i = 0; i<errors_list.length; i++){
+                var err = errors_list[i];
+                if( err.field === "upload"){
+                    $("#errorFileList").addClass("show");
+                }else{
+                    $("#block-" + err.field).addClass("has-error");
+                    $("#helpBlock-" + err.field).text(err.error);
+                }
+
+            }
+        },
         /**
          * Ajoute un champ input file et simule un click sur celui-ci
          * @param event
@@ -76,13 +271,13 @@ var upanddown = (function() {
          * @param event
          */
         files_selected : function (event){
-            console.log(event);
+            // console.log(event);
             var files =  event.target.files;
             for(var i = 0; i < files.length; i++)
             {
                 upload_form.add_file_to_list( files.item(i) );
             }
-
+            $("#errorFileList").removeClass("show");
             upload_form.update_button();
             upload_form.write_html_files_list();
             upload_form.block_add_input = false;
@@ -155,7 +350,7 @@ var upanddown = (function() {
             var indiceInsert = upload_form.uploadlist.length - 1;
 
             upload_form.uploadlist[indiceInsert].push(item);
-            console.log(upload_form.uploadlist);
+            // console.log(upload_form.uploadlist);
             return upload_form.uploadlist;
         },
 
@@ -194,6 +389,10 @@ var upanddown = (function() {
     };
     return {
         upload_form : upload_form.init,
+
         vegas_slideshow : vegas_slideshow
     };
 })();
+
+
+
