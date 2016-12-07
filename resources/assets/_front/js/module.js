@@ -103,7 +103,6 @@ var upanddown = (function() {
                         }
                     });
 
-
                     // Ajout des fichiers
                     upload_form.uploadProcess = $("#input-file-wrapper").fileupload(
                         'send',
@@ -112,14 +111,12 @@ var upanddown = (function() {
                         }
                     )
                     .success(function (result, textStatus, jqXHR) {
-                        $("#transfert").hide();
-                        $("#finish_transfert").show();
-                        console.log(result);
+                        upload_form.saveInDb(result);
                     })
                     .error(function (jqXHR, textStatus, errorThrown) {
                         $("#transfert").hide();
                         $("#error_transfert").show();
-                        console.log("Erreur lors de l'upload en Ajax : Code erreur = " + errorThrown );
+                        console.log("Erreur lors de l'upload en Ajax : Code erreur = " + errorThrown + '---'  );
                         switch (errorThrown){
                             case "Internal Server Error" :
                                 $("#error-reason").text("Erreur 500 du serveur");
@@ -127,13 +124,38 @@ var upanddown = (function() {
                             case "abort" :
                                 $("#error-reason").text("Abandon de l'utilisateur");
                                 break;
+                            default :
+                                $("#error-reason").text("Erreur interne");
+                                break;
                         }
                     });
                 }
             });
 
         },
+        /**
+         * Requete Ajax pour sauvegarder en bdd les fichiers de l'upload et l'objet upload avec la liste des fichiers correspondant
+         * @param res
+         */
+        saveInDb : function (res) {
+            console.log("// Requete Ajax pour sauvegarder en bdd les fichiers de l'upload et l'objet upload avec la liste des fichiers correspondant");
+            console.log(res);
+            res._token = $('meta[name="csrf-token"]').attr('content');
+            $.ajax({
+                method: "POST",
+                url: $("#uploadForm").data('storeuploadurl'),
+                data: res
+            })
+            .done(function( msg ) {
+                alert( "Data Saved: " + msg );
+            });
 
+            // On affiche le succes de l'opération
+            $("#transfert").hide();
+            $("#finish_transfert").show();
+
+
+        },
         cancelUpload : function (event){
             event.preventDefault();
             upload_form.uploadProcess.abort();

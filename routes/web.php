@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@submitUpload')->name('upload');
 
+
 // Authentification route
 Route::get('login',  'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login');

@@ -1,0 +1,25 @@
+test:
+  scheme: sftp
+  host: 51.255.207.243
+  port: 7326
+  user: upanddown
+  privateKey: ~/.ssh/id_rsa
+  check: true
+  path:
+    remote: /var/www/upanddown/www/
+  exclude:
+    - "**/.DS_Store"
+    - "**/.gitignore"
+    - "**/*.md"
+    - "resources/assets/_front/**"
+    - "resources/assets/_back/**"
+    - "resources/assets/gulp_tasks/**"
+    - "resources/assets/gulpfile.js"
+    - "resources/assets/package.json"
+    - "package.json"
+    - .gitignore
+    - .gitattributes
+    - gulpfile.js
+  include:
+    "public/adminLTE/**" : "public/adminLTE/"
+    "public/upAndDown/**" : "public/upAndDown/"

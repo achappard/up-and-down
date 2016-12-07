@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Http\Controllers\Controller;
 use App\Upload;
 use App\UploadedFile;
@@ -25,21 +26,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-       /* $first = new Upload();
-        $first->to = 'aurelien.chappard.fr';
-        $first->message = 'Hello the world';
-
-        $first->save();*/
-
-       /* $test = new UploadedFile();
-        $test->upload_id = 1;
-        $test->internal_name = "poigxcvb";
-        $test->original_name = "test.docx";
-        $test->type = "octet/stream";
-        $test->save();*/
-
-
-
         return view('upAndDown.home');
     }
 
@@ -56,8 +42,26 @@ class HomeController extends Controller
         $data = array(
             'to'        => $to,
             'message'   => $message,
-            'files'     => $upload_handler->response['myfiles'],
+            'fileso'     => $upload_handler->response['myfiles'],
         );
+
+        $upload = new Upload();
+        $upload->to = $to;
+        $upload->message = $message;
+        $upload->save();
+
+
+        foreach ($upload_handler->response['myfiles'] as $f){
+            $file = new File();
+            $file->internal_name    = $f->name;
+            $file->original_name    = $f->original_name;
+            $file->type             = $f->type;
+            $file->upload_id        = $upload->id;
+            $file->save();
+        }
+
+        /*
+        */
 
         return response()->json($data);
     }

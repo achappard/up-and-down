@@ -48,7 +48,6 @@
                 </div>
             </div>
             {{ Form::open(['route' => 'upload','files' => true, 'id' => 'uploadForm']) }}
-
             <div id="block-inputTo" class="form-group">
                 <label for="inputTo" class="sr-only">Envoyer à</label>
                 <input placeholder="Envoyer à"
