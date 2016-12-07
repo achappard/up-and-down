@@ -114,6 +114,7 @@ var upanddown = (function() {
                     .success(function (result, textStatus, jqXHR) {
                         $("#transfert").hide();
                         $("#finish_transfert").show();
+                        console.log(result);
                     })
                     .error(function (jqXHR, textStatus, errorThrown) {
                         $("#transfert").hide();

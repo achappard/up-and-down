@@ -1051,10 +1051,10 @@ class UploadHandler
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
                                           $index = null, $content_range = null) {
         $file = new \stdClass();
-        $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
-            $index, $content_range);
+        $file->name = md5($name . microtime() );
         $file->size = $this->fix_integer_overflow((int)$size);
         $file->type = $type;
+        $file->original_name = $name;
         if ($this->validate($uploaded_file, $file, $error, $index)) {
             $this->handle_form_data($file, $index);
             $upload_dir = $this->get_upload_path();

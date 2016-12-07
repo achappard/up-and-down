@@ -5,17 +5,22 @@
     <div class="col-md-8">
         <div class="row">
             @foreach ($background_images as $img)
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-3">
                     <div class="box box-default">
-
                         <div class="box-body">
                             <img src="{{ $img->url }}" class="img-responsive" alt=""/>
                         </div>
                         <div class="box-footer text-center">
-                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#deleteBackgroundModal" data-idbackground="{{ $img->id  }}">Suppression</button>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#deleteBackgroundModal" data-idbackground="{{ $img->id  }}">Suppression {{$loop->index}} - {{ $loop->index % 3  }}</button>
                         </div>
                     </div>
                 </div>
+                @if ($loop->index % 3 ===2)
+                    <div class="visible-md"><div class="clearfix"></div></div>
+                @endif
+                @if ($loop->index % 4 ===3)
+                    <div class="visible-lg"><div class="clearfix"></div></div>
+                @endif
             @endforeach
         </div>
     </div>

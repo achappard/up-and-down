@@ -15,7 +15,7 @@
 
                     <ul class="list-group list-group-unbordered">
                         <li class="list-group-item">
-                            <b>Email</b> <a class="pull-right" href="#">aurelien.chappard@deefuse.fr</a>
+                            <b>Email</b> <a class="pull-right" href="#">{{ Auth::user()->email }}</a>
                         </li>
                     </ul>
                 </div>
