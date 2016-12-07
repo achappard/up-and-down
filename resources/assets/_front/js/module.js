@@ -30,28 +30,8 @@ var upanddown = (function() {
          * Initialise l'uplaod (lance les écouteurs, etc..)
          */
         init : function () {
-                console.log("init form");
 
-            /*upload_form.progress_loader = $('#divProgress').ClassyLoader(
-                {
-                    width: 200, // width of the loader in pixels
-                    height: 200, // height of the loader in pixels
-                    animate: false, // whether to animate the loader or not
-                    displayOnLoad: true,
-                    percentage: 0, // percent of the value, between 0 and 100
-                    speed: 0, // miliseconds between animation cycles, lower value is faster
-                    roundedLine: true, // whether the line is rounded, in pixels
-                    showRemaining: true, // how the remaining percentage (100% - percentage)
-                    fontFamily: 'Helvetica', // name of the font for the percentage
-                    fontSize: '20px', // size of the percentage font, in pixels
-                    showText: true, // whether to display the percentage text
-                    diameter: 80, // diameter of the circle, in pixels
-                    fontColor: 'rgba(34, 34, 34, 1)', // color of the font in the center of the loader, any CSS color would work, hex, rgb, rgba, hsl, hsla
-                    lineColor: 'rgba(63,159,255, 1)', // line color of the main circle
-                    remainingLineColor: 'rgba(55, 55, 55, 0.4)', // line color of the remaining percentage (if showRemaining is true)
-                    lineWidth: 10 // the width of the circle line in pixels
-                }
-            );*/
+            // CRéation du loader circulaire
             upload_form.progress_loader = $('#divProgress').circleProgress({
                 value: 0,
                 size: 170,
@@ -132,7 +112,6 @@ var upanddown = (function() {
                         }
                     )
                     .success(function (result, textStatus, jqXHR) {
-                        console.log("Finis !");
                         $("#transfert").hide();
                         $("#finish_transfert").show();
                     })
@@ -148,18 +127,13 @@ var upanddown = (function() {
                                 $("#error-reason").text("Abandon de l'utilisateur");
                                 break;
                         }
-                        /*if (errorThrown === 'abort') {
-                            console.log('File Upload has been canceled');
-                        }*/
                     });
-                    // var overallProgress = $('#input-file-wrapper').fileupload('progress');
                 }
             });
 
         },
 
         cancelUpload : function (event){
-            console.log("cancel");
             event.preventDefault();
             upload_form.uploadProcess.abort();
         },

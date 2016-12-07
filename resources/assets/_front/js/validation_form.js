@@ -23,7 +23,6 @@ var validateForm = (function() {
          */
         validate:function (s, r, m) {
             var nbRules = r.length;
-            console.log(r);
             for(var i= 0; i< nbRules; i++){
                 switch ( r[i] ){
                     case "array_length_moreEqual_1" :
