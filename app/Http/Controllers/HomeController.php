@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\File;
-use App\Http\Controllers\Controller;
+use App\Mail\NewUploadToDownload;
+use App\Recipient;
 use App\Upload;
 use App\UploadedFile;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\URL;
 
 class HomeController extends Controller
 {
@@ -26,6 +29,18 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $data = [
+            'sender_name'   => Auth::user()->name,
+            'downloadLink'  => URL::to('/download'),
+            'downloadList'  => array(
+                ['name' => 'Premier fichier', 'size' => 12345],
+                ['name' => 'Deuxième fichier', 'size' => 8765455],
+            )
+        ];
+
+        // on notifie le destinataire
+        Mail::to("test@pop.com")
+            ->send(new NewUploadToDownload($data));
         return view('upAndDown.home');
     }
 
@@ -60,6 +75,11 @@ class HomeController extends Controller
             $file->save();
         }
 
+        // on notifie le destinataire
+        $destinataire = new Recipient();
+        $destinataire->email = $to;
+
+        $destinataire->notify( new NewUploadToDownload() );
         /*
         */
 

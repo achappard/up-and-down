@@ -11,7 +11,7 @@
                             <img src="{{ $img->url }}" class="img-responsive" alt=""/>
                         </div>
                         <div class="box-footer text-center">
-                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#deleteBackgroundModal" data-idbackground="{{ $img->id  }}">Suppression {{$loop->index}} - {{ $loop->index % 3  }}</button>
+                            <button class="btn btn-default btn-xs" data-toggle="modal" data-target="#deleteBackgroundModal" data-idbackground="{{ $img->id  }}"><span class="glyphicon glyphicon-remove"></span> Suppression</button>
                         </div>
                     </div>
                 </div>
