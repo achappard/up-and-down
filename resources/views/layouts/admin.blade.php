@@ -10,7 +10,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-            <a href="index2.html" class="logo">
+            <a href="{{ URL::to('/') }}" class="logo">
                 <span class="logo-mini"><b>U</b>A<b>D</b></span>
                 <span class="logo-lg"><b>Up</b>And<b>Down</b></span>
             </a>

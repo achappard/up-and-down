@@ -25,7 +25,8 @@
         },
       "files" : [
         "app/Validators/MyValidator.php",
-        "app/Helpers/UploadHandler.php"
+        "app/Helpers/UploadHandler.php",
+        "app/Helpers/SizeHelper.php"
       ]
     },
     "autoload-dev": {

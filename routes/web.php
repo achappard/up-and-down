@@ -29,19 +29,22 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 //Route::post('register', 'Auth\RegisterController@register');
 
 
-//Route::resource('titi', 'Admin\BackgroundManagement');
-
-
 // Admin dashboard
 Route::get('admin', 'Admin\DashboardController@index')->name('dashboard.index');
 
 
 
 Route::group(['prefix' => 'admin'], function () {
+    // Background
     Route::get('background-management', 'Admin\BackgroundManagement@index')->name('background.index');
     Route::post('background-management', 'Admin\BackgroundManagement@store')->name('background.store');
     Route::delete('background-management/{background}', 'Admin\BackgroundManagement@destroy')->name('background.destroy');
 
+    // Profile
     Route::get('my-profile', 'Admin\UserProfilController@show')->name('userprofile.show');
     Route::put('my-profile/{userprofile}', 'Admin\UserProfilController@update')->name('userprofile.update');
+
+    // Téléchargement
+    Route::get('downloads', 'Admin\DownloadController@index')->name('download.index');
+
 });

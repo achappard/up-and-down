@@ -34,7 +34,7 @@
                                             <td style="font-family: Helvetica, arial, sans-serif; font-size: 13px; color: #333333; text-align:left;line-height: 24px;">
                                                 <ul style="padding-left: 0px; background: #f2f6f8; list-style-position: inside;  padding: 10px 0px">
                                                     @foreach($downloadList as $f)
-                                                        <li style="padding-left: 10px;">{{ $f['name'] }}</li>
+                                                        <li style="padding-left: 10px;">{{ $f['name'] }} ({{ SizeHelper::formatSizeUnits( $f['size'] ) }})</li>
                                                     @endforeach
                                                 </ul>
                                             </td>

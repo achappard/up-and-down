@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div id="defaultpanel">
     <div id="uploadPanel" class="panel panel-default">
         <div class="panel-body">

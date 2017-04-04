@@ -81,7 +81,7 @@ var upanddown = (function() {
                 var form_check = upload_form.checkform(email_to, email_message, filesList);
 
                 if ( form_check.is_valid ){
-
+                    console.log("oooo");
                     $("#uploadForm, #file-list").hide();
                     $("#transfert").show();
 
@@ -111,6 +111,7 @@ var upanddown = (function() {
                         }
                     )
                     .success(function (result, textStatus, jqXHR) {
+
                         upload_form.saveInDb(result);
                     })
                     .error(function (jqXHR, textStatus, errorThrown) {
@@ -147,12 +148,14 @@ var upanddown = (function() {
                 data: res
             })
             .done(function( msg ) {
-                alert( "Data Saved: " + msg );
+                console.log("Fini !!!");
+                console.log(msg);
             });
 
             // On affiche le succes de l'opération
             $("#transfert").hide();
             $("#finish_transfert").show();
+            console.log("hihaaaa");
 
 
         },
