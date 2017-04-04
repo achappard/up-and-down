@@ -7,6 +7,7 @@ use App\Mail\NewUploadToDownload;
 use App\Recipient;
 use App\Upload;
 use App\UploadedFile;
+use Faker\Provider\Uuid;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -29,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        echo Uuid::uuid();
         return view('upAndDown.home');
     }
 }
