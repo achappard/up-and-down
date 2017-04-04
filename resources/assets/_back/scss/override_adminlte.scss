@@ -28,3 +28,12 @@
     @include transition-duration(0.15s);
     @include transition-timing-function(ease-out);
 }
+
+.main-header .logo .logo-mini img{
+   padding: 7px;
+    max-width: 50px;
+}
+
+.main-header .logo .logo-lg img{
+    padding: 7px;
+}

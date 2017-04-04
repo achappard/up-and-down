@@ -6,13 +6,18 @@
     <title>UpAndDown 1.0 | Dashboard</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     @include('admin.shared.styles_scripts_header')
+    @include('upAndDown.shared.favicons')
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="{{ URL::to('/') }}" class="logo">
-                <span class="logo-mini"><b>U</b>A<b>D</b></span>
-                <span class="logo-lg"><b>Up</b>And<b>Down</b></span>
+                <span class="logo-mini">
+                    <img class="img-responsive" src="{{ URL::asset('adminLTE/img/logo_only@2x.png') }}">
+                </span>
+                <span class="logo-lg">
+                    <img class="img-responsive" src="{{ URL::asset('adminLTE/img/logo_full@2x.png') }}">
+                </span>
             </a>
             @include('admin.shared.top_nav_bar')
         </header>

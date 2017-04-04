@@ -34,7 +34,7 @@ class DashboardController extends Controller
             ),
         );
         $nbBackgrounds = Backgrounds::all()->count();
-        $nbDownloads    = Upload::all()->count();
+        $nbDownloads    = "A calculer";
         $hightMenuItem = 'admin';
         return view('admin.dashboard', compact('page_title', 'breadcrumb', 'hightMenuItem', 'nbBackgrounds', 'nbDownloads' ));
     }

@@ -22,7 +22,6 @@ class DefaultBackgroundsSeeder extends Seeder
             ['url' => 'https://c2.staticflickr.com/6/5527/31306895122_d414c53bf3_h.jpg'],
             ['url' => 'https://c2.staticflickr.com/6/5778/31342531091_1d64879249_h.jpg'],
             ['url' => 'https://c2.staticflickr.com/6/5616/30658824543_d35454c981_h.jpg'],
-            ['url' => 'https://c2.staticflickr.com/6/5721/31462067225_e61cdc0890_h.jpg'],
             ['url' => 'https://c2.staticflickr.com/6/5603/31089163120_49b1912842_h.jpg'],
             ['url' => 'https://c2.staticflickr.com/6/5737/31084948020_fd19ff5ba4_h.jpg'],
             ['url' => 'https://c2.staticflickr.com/6/5565/31423493126_eab5234cbc_h.jpg'],
