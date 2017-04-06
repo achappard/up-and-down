@@ -30,10 +30,97 @@
 }
 
 .main-header .logo .logo-mini img{
-   padding: 7px;
+   //padding: 7px;
     max-width: 50px;
 }
 
 .main-header .logo .logo-lg img{
-    padding: 7px;
+    //padding: 7px;
+
+}
+
+ul#step-download{
+    border: 0px solid red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0px;
+    position: relative;
+    &:before{
+        content: '';
+        display: block;
+        left: 30px;
+        right: 30px;
+        height: 4px;
+        top: 35px;
+        position: absolute;
+        background: #F3F3F3;
+        z-index: 1;
+    }
+
+    li{
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        a{
+            cursor: default;
+            div.number{
+                display: block;
+                margin: 0px auto;
+                background: #999999;
+                color: #FFF;
+                font-weight: bold;
+                font-size: 42px;
+                line-height: 58px;
+                $dim: 70px;
+                width: $dim;
+                height: $dim;
+                border: 4px solid #FFF;
+                @include box-shadow(rgba(#333333, 0.2) 0px 0px 4px);
+
+                @include border-radius(50%);
+
+            }
+            div.step-name{
+                text-transform: uppercase;
+                line-height: 30px;
+                color: #999999;
+            }
+        }
+
+        &.hightlight{
+            @include opacity(1);
+            a{
+                cursor: pointer;
+                color: inherit;
+                div.number{
+                    background: #3C8DBC;
+                    color: #FFF;
+                    @include box-shadow(rgba(#333333, 0.5) 0px 0px 4px);
+                }
+                div.step-name{
+                    color: inherit;
+                }
+            }
+
+        }
+    }
+}
+#visuel-file{
+    font-size: 70px;
+    line-height: 45px;
+    padding-top: 40px;
+    small{
+        font-size: 30px;
+        line-height: normal;
+        word-break: break-all;
+    }
+}
+
+#step1{
+    .meta-name, .actions{
+        display: block;
+    }
 }

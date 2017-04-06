@@ -11,12 +11,12 @@
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-            <a href="{{ URL::to('/') }}" class="logo">
+            <a href="{{ URL::route('dashboard.index') }}" class="logo">
                 <span class="logo-mini">
                     <img class="img-responsive" src="{{ URL::asset('adminLTE/img/logo_only@2x.png') }}">
                 </span>
                 <span class="logo-lg">
-                    <img class="img-responsive" src="{{ URL::asset('adminLTE/img/logo_full@2x.png') }}">
+                    <img src="{{ URL::asset('adminLTE/img/logo_full.png') }}">
                 </span>
             </a>
             @include('admin.shared.top_nav_bar')
@@ -61,6 +61,7 @@
         @include('admin.shared.footer')
     </div>
     @include('admin.shared.scripts_footer')
+    @stack('scripts')
 </body>
 </html>
 

@@ -1,5 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
-    <p>oioi</p>
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
 @endsection

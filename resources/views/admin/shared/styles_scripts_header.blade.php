@@ -4,6 +4,7 @@
 <link rel="stylesheet"  href="{{ URL::asset('adminLTE/vendor/css/jquery-jvectormap-1.2.2.css') }}">
 <link rel="stylesheet"  href="{{ URL::asset('adminLTE/vendor/css/AdminLTE.min.css') }}">
 <link rel="stylesheet"  href="{{ URL::asset('adminLTE/vendor/css/skin-blue.min.css') }}">
+<link rel="stylesheet"  href="{{ URL::asset('adminLTE/vendor/datepicker/datepicker3.css') }}">
 <link rel="stylesheet"  href="{{ URL::asset('adminLTE/css/override_adminlte.css') }}">
 
 <!--[if lt IE 9]>

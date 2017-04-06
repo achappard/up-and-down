@@ -27,7 +27,7 @@ class DownloadController extends Controller
      */
     public function index()
     {
-        $page_title  = "<i class=\"ion ion ion-ios-box\"></i>  Gestion des téléchargements disponibles";
+        $page_title  = "<i class=\"ion ion ion-ios-box\"></i>  Gestion des téléchargements";
         $breadcrumb = array(
             array(
                 'label' => $page_title,

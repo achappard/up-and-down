@@ -36,8 +36,43 @@ var adminUp = (function() {
             });
         }
     };
+
+    var sending = {
+        init : function () {
+
+            // Link sur le fichier à envoyer
+            $('a.choose-file').on('click', function (event) {
+                event.preventDefault();
+                $('#file-to-send').val( $(this).data('file') );
+                $('#filename').text($(this).data('filename'));
+                sending.showstep(2);
+            });
+
+
+            // Link sur les étapes
+            $('ul#step-download li').on('click', 'a.link-step', function (event) {
+                event.preventDefault();
+                if( $(this).parent().hasClass('hightlight')){
+                    sending.showstep( $(this).data('step') );
+                }
+            });
+
+        },
+        showstep : function (n) {
+          $('ul#step-download li').removeClass("hightlight");
+          for (i=0; i<=n-1; i++){
+              var num = i;
+              $('ul#step-download li').eq(num).addClass("hightlight");
+          }
+
+
+          $('.step').addClass("hidden");
+          $('#step' + n).removeClass('hidden');
+        }
+    };
     return {
         backgrounds : backgrounds.init,
-        modal : alertmodal.init
+        modal       : alertmodal.init,
+        sending     : sending.init
     };
 })();
