@@ -38,24 +38,97 @@ var adminUp = (function() {
     };
 
     var sending = {
-        init : function () {
+        init : function ( init_obj) {
 
-            // Link sur le fichier à envoyer
+
+
+            var nowTemp = new Date();
+
+            var date_d = ( nowTemp.getDate() < 10 ? "0" + nowTemp.getDate() : nowTemp.getDate() ),
+                date_m = ( (nowTemp.getMonth() + 1) < 10 ? "0" + (nowTemp.getMonth() + 1) : (nowTemp.getMonth() + 1) ),
+                date_y = nowTemp.getFullYear();
+
+           console.log(date_d + '/' + date_m + '/' +  date_y);
+
+
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: "dd/mm/yyyy",
+                language: 'fr',
+                //startDate: "12/04/2017",
+                startDate: date_d + '/' + date_m + '/' +  date_y
+            });
+
+
+
+            // Le formulaire contient-il des erreurs
+            if(init_obj.has_error === undefined){
+                init_obj.has_error = false;
+            }
+
+            /**
+             * Détection du changement du hash
+             */
+            $(window).hashchange( function(){
+                var hash = location.hash;
+
+                // Si le form a été soumis et qu'il y a des erreurs
+                // alors on va direct à l'étape 2
+                if (hash === "" && init_obj.has_error == '1'){
+                    location.hash = "#step2";
+
+                }
+
+                var stepNum = (hash === "" ? 0 : hash.substr(5,1)) ;
+
+                console.log("stepNum = " + stepNum);
+                // Attention si l'étape est la numéro 2, il faut s'assurer qu'un document à bien été
+                // sélectionner en étape 1
+                if(stepNum === '2'){
+                    if ( $('#file-to-send-input').val() === "" ){
+                        location.hash = "#step1";
+                    }else{
+                        $('#filename').text($('#file-name-input').val());
+
+                    }
+                }
+
+                if( stepNum === '3' ){
+                   if(init_obj.store_download_success != '1' ){
+                       location.hash = "#step2";
+                   }
+                }
+
+
+                sending.showstep(stepNum);
+            });
+
+            /**
+             * Trigger hash change
+             */
+            $(window).hashchange();
+
+            /**
+             * Au clic sur un document, on rempli le formulaire
+             */
             $('a.choose-file').on('click', function (event) {
-                event.preventDefault();
-                $('#file-to-send').val( $(this).data('file') );
+                $('#file-to-send-input').val( $(this).data('file') );
+                $('#file-name-input').val( $(this).data('filename') );
+
                 $('#filename').text($(this).data('filename'));
-                sending.showstep(2);
+                $('#filesize').text( '(' + $(this).data('filesize') + ')');
             });
 
 
             // Link sur les étapes
             $('ul#step-download li').on('click', 'a.link-step', function (event) {
-                event.preventDefault();
-                if( $(this).parent().hasClass('hightlight')){
-                    sending.showstep( $(this).data('step') );
+
+                if( ! $(this).parent().hasClass('hightlight')){
+                    event.preventDefault();
                 }
             });
+
+
 
         },
         showstep : function (n) {

@@ -176,7 +176,7 @@
                             <!-- Spacing -->
                             <tr>
                                 <td align="center" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 10px;color: #ffffff">
-                                    you have recevied this email because you have subscribed to username@company.com<br> If you no longer wish to recive emails please  <a href="#" style="text-decoration: none; color: #3F9FFF">unsubscribe </a>
+                                    Cet envoi est automatique, merci de ne pas y répondre
                                 </td>
                             </tr>
                             <!-- Spacing -->

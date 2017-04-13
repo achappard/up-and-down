@@ -46,5 +46,6 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Téléchargement
     Route::get('downloads', 'Admin\DownloadController@index')->name('download.index');
+    Route::post('downloads', 'Admin\DownloadController@store')->name('download.store');
 
 });

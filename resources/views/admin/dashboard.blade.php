@@ -32,43 +32,62 @@
         <div class="box-body">
             <ul id="step-download">
                 <li class="hightlight">
-                    <a href="#" class="link-step" data-step="1">
+                    <a href="#step1" class="link-step" data-step="1">
                         <div class="number">1</div>
                         <div class="step-name">Sélection</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="link-step" data-step="2">
+                    <a href="#step2" class="link-step" data-step="2">
                         <div class="number">2</div>
                         <div class="step-name">Coordonnées</div>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="link-step" data-step="3">
+                    <a href="#step3" class="link-step" data-step="3">
                         <div class="number">3</div>
                         <div class="step-name">Envoie</div>
                     </a>
                 </li>
             </ul>
             <div id="steps">
-                <div id="step1" class="step">
-                    <h4>Sélectionnez un fichier à envoyer :</h4>
-                    <table class="table table-bordered table-striped table-hover">
-                        <tbody>
-                            @foreach( $files_availables as $file)
-                            <tr role="row">
-                                <td>
-                                    <span class="meta-name">
-                                        {{ pathinfo($file)['basename'] }} <small class="text-muted">({{ SizeHelper::formatSizeUnits(Storage::size($file)) }})</small>
-                                    </span>
-                                    <span class="actions">
-                                        <a class="choose-file" href="#step2" data-filename="{{ pathinfo($file)['basename'] }}" data-file="{{ $file }}"><small>Choisir ce fichier</small></a>
-                                    </span>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div id="step0" class="step">
+                    <p class="text-center lead">
+                        Envoyez un nouveau document à votre correspondant en 3 clics
+                        <br>
+
+                    </p>
+                    <p class="text-center">
+                        <a href="#step1" class="btn btn-lg btn-primary">Commencer</a>
+                    </p>
+                </div>
+                <div id="step1" class="step hidden">
+                    @if($nbDownloads === 0)
+                        <h4 class="no-file text-center">Aucun fichier n'est actuellement disponible pour l'envoi.</h4>
+                    @elseif ( $nbDownloads === 1)
+                        <h4>Sélectionnez le fichier à envoyer...<small> Bon et bien là apparement, y'a pas trop le choix</small></h4>
+                    @else
+                        <h4>Sélectionnez un fichier à envoyer parmi les <strong>{{ $nbDownloads }}</strong> disponibles :</h4>
+                    @endif
+
+                    <div id="thetable">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tbody>
+                                @foreach( $files_availables as $file)
+                                <tr role="row">
+                                    <td>
+                                        <span class="meta-name">
+                                            {{ pathinfo($file)['basename'] }} <small class="text-muted">({{ SizeHelper::formatSizeUnits(Storage::size($file)) }})</small>
+                                        </span>
+                                        <span class="actions">
+                                            <a class="choose-file" href="#step2" data-filename="{{ pathinfo($file)['basename'] }}" data-file="{{ $file }}" data-filesize="{{ SizeHelper::formatSizeUnits(Storage::size($file)) }}"><small>Choisir ce fichier</small></a>
+                                        </span>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div id="step2" class="step hidden">
                     <h4>Renseignez le correspondant :</h4>
@@ -77,49 +96,76 @@
                             <p id="visuel-file" class="text-center lead">
                                 <i class="fa fa-file-archive-o" aria-hidden="true"></i>
                                 <br>
-                                <small id="filename">labl.jpg</small>
+                                <small id="filename"></small>
+                                <small id="filesize">(3 Mo)</small>
+
+                            </p>
+                            <p class="text-center">
+                                <a href="#step1" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-th-list"></span> Retour à la liste</a>
                             </p>
                         </div>
                         <div class="col-sm-9">
-                            <form class="form-horizontal">
+                            {{ Form::open(array('route' => 'download.store', 'class' => 'form-horizontal')) }}
 
+                                <input id="file-to-send-input" name="file-to-send-input" type="hidden" value="{{ old('file-to-send-input') }}" />
+                                <input id="file-name-input" name="file-name-input" type="hidden" value="{{ old('file-name-input') }}" />
 
-                                <input id="file-to-send" name="file-to-send" type="hidden" class="form-control">
-                                <div class="form-group">
-                                    <label for="email_to" class="col-sm-2 control-label">Destinataire :</label>
+                                <div class="form-group @if($errors->has('email_to')) has-error @endif">
+                                    <label for="email_to" class="col-sm-2 control-label">Destinataire<sup class="text-danger">*</sup> : </label>
                                     <div class="col-sm-10">
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-envelope"></i>
                                             </div>
-                                            <input type="email" class="form-control" name="email_to" id="email_to" placeholder="Email">
+                                            <input type="email" class="form-control" name="email_to" id="email_to" value="{{ old('email_to') }}" placeholder="Email">
                                         </div>
                                         <span class="help-block">
-                                    <small>Saisissez l'adresse email de votre correspondant</small>
-                                </span>
+                                            <small>
+                                            @if($errors->has('email_to'))
+                                                {{ $errors->first("email_to") }}
+                                            @else
+                                                Saisissez l'adresse email de votre correspondant
+                                            @endif
+                                            </small>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="name_from" class="col-sm-2 control-label">Message :</label>
+
+                                <div class="form-group @if($errors->has('message')) has-error @endif">
+                                    <label for="message" class="col-sm-2 control-label">Message<sup class="text-danger">*</sup> :</label>
                                     <div class="col-sm-10">
-                                        <textarea rows="6" cols="10" class="form-control" style="resize: vertical"></textarea>
+                                        <textarea name="message" id="message" rows="6" cols="10" class="form-control" style="resize: vertical">{{ old('message') }}</textarea>
+
                                         <span class="help-block">
-                                    <small>Écrivez un message à votre correspondant lui indiquant par exemple les documents qu'il trouvera en téléchargeant le fichier mis à sa disposition</small>
-                                </span>
+                                            <small>
+                                            @if($errors->has('message'))
+                                                    {{ $errors->first("message") }}
+                                            @else
+                                                Écrivez un message à votre correspondant lui indiquant par exemple les documents qu'il trouvera en téléchargeant le fichier mis à sa disposition
+                                            @endif
+                                            </small>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group @if($errors->has('expiration_date')) has-error @endif">
                                     <label for="expiration_date" class="col-sm-2 control-label">Expiration du lien :</label>
                                     <div class="col-sm-10">
                                         <div class="input-group date">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control pull-right" id="datepicker">
+                                            <input type="text" name="expiration_date" class="form-control pull-right" id="datepicker" value="{{ old('expiration_date') }}">
                                         </div>
                                         <span class="help-block">
-                                    <small>Saisissez une date si vous souhaitez que votre correspondant puisse télécharger le fichier avant</small>
-                                </span>
+                                            <small>
+                                                @if($errors->has('expiration_date'))
+                                                    {{ $errors->first("expiration_date") }}
+                                                @else
+                                                    Saisissez une date si vous souhaitez que votre correspondant puisse télécharger le fichier avant
+                                                @endif
+
+                                            </small>
+                                        </span>
                                     </div>
                                     <!-- /.input group -->
                                 </div>
@@ -128,11 +174,21 @@
                                         <button type="submit" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-share-alt"></span> Envoyer</button>
                                     </div>
                                 </div>
-                            </form>
+                            {{ Form::close() }}
+
                         </div>
                     </div>
 
 
+                </div>
+                <div id="step3" class="step hidden">
+                    <p class="text-center lead">
+                        <strong>Bravo</strong>, votre document vient d'être envoyé !
+                        <br>
+                    </p>
+                    <p class="text-center">
+                        <a href="{{ URL::route('dashboard.index') }}#step1" class="btn btn-lg btn-primary">Envoyer un autre document</a>
+                    </p>
                 </div>
             </div>
         </div>
@@ -143,7 +199,11 @@
 @push('scripts')
 <script>
     $(function() {
-        adminUp.sending();
+        var init_obj = {
+            has_error :  @if( count($errors->all()) > 0 ) 1 @else 0  @endif   ,
+            store_download_success : @if (session('store_download') && session('store_download') == "success" ) 1 @else 0 @endif
+        };
+        adminUp.sending(init_obj);
     });
 </script>
 @endpush

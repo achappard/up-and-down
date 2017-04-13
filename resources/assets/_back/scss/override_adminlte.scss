@@ -38,7 +38,9 @@
     //padding: 7px;
 
 }
-
+.no-file{
+    margin-top: 30px;
+}
 ul#step-download{
     border: 0px solid red;
     display: flex;
@@ -110,12 +112,17 @@ ul#step-download{
 }
 #visuel-file{
     font-size: 70px;
-    line-height: 45px;
-    padding-top: 40px;
+    line-height: 33px;
+    padding-top: 120px;
     small{
         font-size: 30px;
-        line-height: normal;
+        line-height: 10px;
         word-break: break-all;
+    }
+    small#filesize{
+        font-size: 20px;
+        line-height: 0px;
+        white-space: nowrap;
     }
 }
 
@@ -123,4 +130,12 @@ ul#step-download{
     .meta-name, .actions{
         display: block;
     }
+    #thetable{
+        max-height: 400px;
+        overflow: auto;
+    }
+}
+
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+    color: #777;
 }
