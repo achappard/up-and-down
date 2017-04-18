@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => 'no-reply@partage.deefuse.fr',
+        'address' => 'no-reply@deefuse.fr',
         'name' => 'UpAndDown',
     ],
 
