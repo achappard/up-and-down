@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', 'HomeController@index');
 Route::post('/', 'HomeController@submitUpload')->name('upload');
 
@@ -23,6 +24,11 @@ Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm'
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+
+
+
+Route::get('download/{token}', 'DownloadsController@download');
+Route::get('retrieve-document/{token}', 'DownloadsController@push_document')->name('retrieve_document');
 
 // Disable registration to enable, un comment this rwo lines
 //Route::get('register', 'Auth\RegisterController@showRegistrationForm');

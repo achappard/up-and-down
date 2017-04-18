@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('pagetitle', '| Mot de passe oublié')
 <!-- Main Content -->
 @section('content')
 

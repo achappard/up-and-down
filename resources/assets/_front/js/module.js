@@ -20,7 +20,6 @@ var upanddown = (function() {
     };
 
     return {
-
         vegas_slideshow : vegas_slideshow
     };
 })();

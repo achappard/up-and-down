@@ -30,7 +30,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        echo Uuid::uuid();
         return view('upAndDown.home');
     }
 }

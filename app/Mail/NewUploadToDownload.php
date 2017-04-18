@@ -38,7 +38,7 @@ class NewUploadToDownload extends Mailable
         $this->file_name = $data['file_name'];
         $this->file_size = $data['file_size'];
 
-        setlocale (LC_ALL, "fr_FR");
+        //setlocale (LC_ALL, "fr_FR");
         $this->file_expiration_date = strftime("%A %d %B %Y", strtotime( $data['expiration_date'] ));
 
         $this->subject = $this->sender_name .  " vous a envoyé des fichiers via UpAndDown";

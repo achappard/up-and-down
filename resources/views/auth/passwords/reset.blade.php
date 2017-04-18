@@ -1,5 +1,5 @@
 @extends('layouts.app')
-
+@section('pagetitle', '| Reset Password')
 @section('content')
 <div id="defaultpanel">
     <div class="panel panel-default">

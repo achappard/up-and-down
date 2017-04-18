@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('pagetitle', '| Login')
 @section('content')
 
 <div id="defaultpanel">

@@ -1,0 +1,57 @@
+#downloadpanel{
+    margin-top: 50px + $grid-gutter-width/2;
+    margin-left: $grid-gutter-width/2;
+    margin-right: $grid-gutter-width/2;
+    @include transition-property(all);
+    @include transition-duration(0.4s);
+    @include transition-timing-function(ease-in);
+
+
+    .panel{
+        @include box-shadow(rgba(#000,0.6) 0px 0px 10px);
+
+        margin-bottom: 0px;
+        .panel-body form .form-group:last-child{
+            margin-bottom: 0px;
+        }
+    }
+
+
+    .note-expiration{
+        margin-top: 10px;
+    }
+}
+
+
+
+/**
+* Small Screen - Breack point
+*/
+@media (min-width: $screen-sm-min) {
+    #downloadpanel{
+        margin: 0px;
+        position: absolute;
+        width: $panel-download-width;
+        top: 105px;
+        left: 55px;
+
+    }
+
+}
+
+/**
+* Medium Screen - Breack point
+*/
+@media (min-width: $screen-md-min) {
+    #downloadpanel{
+        top: auto;
+        bottom: 175px;
+    }
+}
+
+/**
+* Large Screen - Breack point
+*/
+@media (min-width: $screen-lg-min) {
+
+}
