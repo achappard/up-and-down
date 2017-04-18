@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Downloads;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class DownloadsController extends Controller
 {
@@ -82,11 +83,23 @@ class DownloadsController extends Controller
 
 
 
-            $file = "/home/vagrant/Code/up-and-down/storage/app/up-and-down/" . $file_name;
+            if (App::environment('local')) {
+                $prefixe = '/home/vagrant/Code/up-and-down/storage/app/up-and-down/';
+            }else{
+                $prefixe = '/var/www/upanddown/www/storage/app/up-and-down/';
+            }
+            $file = $prefixe . $file_name;
+
+
             header('Content-Type: application/octet-stream');
             header('Content-Transfer-Encoding: Binary');
             header('Content-disposition: attachment; filename="' . basename($file) . '"');
-            header('X-Accel-Redirect: /tititititi/'.basename($file));
+
+            if (App::environment('local')) {
+                header('X-Accel-Redirect: /tititititi/'.basename($file));
+            }else{
+                header('X-Sendfile: ' . $file);
+            }
         }
     }
 }
